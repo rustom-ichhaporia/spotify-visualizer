@@ -16,55 +16,15 @@ import java.util.List;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    File file = new File("src/main/resources/categories.json");
+    ApiDriver driver = new ApiDriver();
+    driver.setup();
 
-    String topListsId = "";
-
+    File file = new File("src/main/resources/top_50_audio_features.json");
     ObjectMapper mapper = new ObjectMapper();
-    CategoriesWrapper categoriesWrapper = mapper.readValue(file, CategoriesWrapper.class);
-    Categories categoriesObj = categoriesWrapper.getCategories();
-    List<Category> categories = categoriesObj.getAllCategories();
-    for (Category category : categories) {
-      // System.out.println(category.getName() + "\t" + category.getID());
-      if (category.getName().equals("toplists")) {
-        topListsId = category.getID();
-      }
-    }
+    AudioFeatureWrapper audioFeatures = mapper.readValue(file, AudioFeatureWrapper.class);
 
-    SpotifyApi spotifyApi =
-        new SpotifyApi.Builder()
-            .setClientId(ApiCredentials.getClientId())
-            .setClientSecret(ApiCredentials.getClientSecret())
-            .build();
-    ClientCredentialsRequest clientCredentialsRequest = spotifyApi.clientCredentials().build();
+    List<AudioFeature> songFeatures = audioFeatures.getAudio_features();
 
-    ClientCredentials clientCredentials = null;
-    try {
-      clientCredentials = clientCredentialsRequest.execute();
-    } catch (SpotifyWebApiException e) {
-      e.printStackTrace();
-    } catch (ParseException e) {
-      e.printStackTrace();
-    }
 
-    ApiCredentials.setAccessToken(clientCredentials.getAccessToken());
-    spotifyApi.setAccessToken(ApiCredentials.getAccessToken());
-
-    GetAudioFeaturesForTrackRequest analysis =
-        spotifyApi.getAudioFeaturesForTrack("4Oun2ylbjFKMPTiaSbbCih").build();
-    try {
-      AudioFeatures analysis1 = analysis.execute();
-      System.out.println(analysis.getJson());
-      System.out.println(analysis1.getDanceability());
-      FileWriter fileWriter = new FileWriter("src/main/resources/cardib.json");
-      fileWriter.write(analysis.getJson());
-      fileWriter.flush();
-      fileWriter.close();
-
-    } catch (SpotifyWebApiException e) {
-      e.printStackTrace();
-    } catch (ParseException e) {
-      e.printStackTrace();
-    }
   }
 }
