@@ -26,20 +26,23 @@ public class ApiDriver {
   private SpotifyApi spotifyApi; // Main API class that runs all API calls
   private ApiCredentials
       apiCredentials; // Private class containing credentials for public/secret key to Spotify
-                      // API. NOTE: This is NOT uploaded to Github for security reasons, so please
+  // API. NOTE: This is NOT uploaded to Github for security reasons, so please
   private List<AudioFeature> songFeatures; // List of AudioFeatures objects to be generated
   private Map<String, String> songIdsAndNames; // Map associating song IDs to song names
+  private String playlistFilePath =
+      "src/main/resources/top_50.json"; // File path to save playlist, can be edited
+  private String audioFeaturePath =
+      "src/main/resources/top_50_audio_features.json"; // File path to save AudioFeatures
 
-  /**
-   * Sets up the API for use using credential login.
-   */
+  /** Sets up the API for use using credential login. */
   public void setup() {
     initializeApi();
     setupClientCredentials();
   }
 
   /**
-   * Initializes SpotifyApi object using personal credentials. See ApiCredentials field for instructions.
+   * Initializes SpotifyApi object using personal credentials. See ApiCredentials field for
+   * instructions.
    */
   public void initializeApi() {
     spotifyApi =
@@ -49,15 +52,14 @@ public class ApiDriver {
             .build();
   }
 
-  /**
-   * Sends call to the remote API to initialize login credentials.
-   */
+  /** Sends call to the remote API to initialize login credentials. */
   private void setupClientCredentials() {
     ClientCredentialsRequest clientCredentialsRequest = spotifyApi.clientCredentials().build();
 
     ClientCredentials clientCredentials = null;
     try {
-      clientCredentials = clientCredentialsRequest.execute(); // Attempts to login using provided credentials
+      clientCredentials =
+          clientCredentialsRequest.execute(); // Attempts to login using provided credentials
     } catch (SpotifyWebApiException | ParseException | IOException e) {
       e.printStackTrace();
     }
@@ -66,10 +68,15 @@ public class ApiDriver {
     spotifyApi.setAccessToken(ApiCredentials.getAccessToken()); // Set access token for future calls
   }
 
+  /**
+   * Deserializes a JSON file representing a list of AudioFeatures into an AudioFeatureWrapper
+   *
+   * @param fileName Path to file, beginning at src/
+   */
   public void deserializeJson(String fileName) {
     File file = new File(fileName);
     ObjectMapper mapper = new ObjectMapper();
-    AudioFeatureWrapper audioFeatures = new AudioFeatureWrapper();
+    AudioFeatureWrapper audioFeatures = new AudioFeatureWrapper(); // Wrapper for AudioFeature list
     try {
       audioFeatures = mapper.readValue(file, AudioFeatureWrapper.class);
     } catch (IOException e) {
@@ -80,69 +87,87 @@ public class ApiDriver {
     matchNamesToFeatures(songIdsAndNames);
   }
 
+  /**
+   * Returns the list of AudioFeatures retrieved by the API.
+   *
+   * @return
+   */
   public List<AudioFeature> getSongFeatures() {
     return songFeatures;
   }
 
+  /**
+   * Takes the song names from the playlist tracks and matches them to the AudioFeatures using their
+   * IDs.
+   *
+   * @param songIdsAndNames Map associating song IDs and names
+   */
   public void matchNamesToFeatures(Map<String, String> songIdsAndNames) {
     for (AudioFeature feature : songFeatures) {
       for (String songId : songIdsAndNames.keySet()) {
         if (feature.getId().equals(songId)) {
+          // If the songs match, add the name to the AudioFeature
           feature.setSongName(songIdsAndNames.get(songId));
         }
       }
     }
   }
 
+  /**
+   * Downloads the playlist given by a specified ID into a JSON file.
+   *
+   * @param playlistId Spotify internal ID representing playlist
+   */
   public void downloadPlaylist(String playlistId) {
     Paging<PlaylistTrack> playlistItems = getPlaylistsItems(playlistId);
     songIdsAndNames = SongNameFunctions.matchSongIds(playlistItems);
-    String[] top50SongIds = new String[songIdsAndNames.size()];
-    top50SongIds = songIdsAndNames.keySet().toArray(top50SongIds);
-    writeAudioFeaturesJson(top50SongIds);
+    String[] playlistSongIds = new String[songIdsAndNames.size()];
+    playlistSongIds = songIdsAndNames.keySet().toArray(playlistSongIds);
+    writeAudioFeaturesJson(playlistSongIds);
   }
 
+  /**
+   * Returns the Map associating song IDs and names from the playlist.
+   *
+   * @return Map with keySet song IDs and values song names.
+   */
   public Map<String, String> getSongIdsAndNames() {
     return songIdsAndNames;
   }
 
+  /**
+   * Saves the AudioFeatures for the songs in the playlist to a JSON file.
+   *
+   * @param trackIdsAndNames array of IDs of the songs to get.
+   */
   private void writeAudioFeaturesJson(String[] trackIdsAndNames) {
     GetAudioFeaturesForSeveralTracksRequest request =
         spotifyApi.getAudioFeaturesForSeveralTracks(trackIdsAndNames).build();
     AudioFeatures[] audioFeatures = null;
     try {
       audioFeatures = request.execute();
-      FileWriter writer = new FileWriter("src/main/resources/top_50_audio_features.json");
+      FileWriter writer = new FileWriter(audioFeaturePath);
       writer.write(request.getJson());
       writer.flush();
       writer.close();
     } catch (SpotifyWebApiException | ParseException | IOException e) {
       e.printStackTrace();
     }
-    //    for (String trackId : trackIdsAndNames.keySet()) {
-    //      GetAudioFeaturesForTrackRequest request =
-    // spotifyApi.getAudioFeaturesForTrack(trackId).build();
-    //      AudioFeatures audioFeature = null;
-    //      try {
-    //        audioFeature = request.execute();
-    //        String filename = trackIdsAndNames.get(trackId);
-    //        FileWriter fileWriter = new FileWriter("src/main/resources/" + filename + ".json");
-    //        fileWriter.write(request.getJson());
-    //        fileWriter.flush();
-    //        fileWriter.close();
-    //      } catch (SpotifyWebApiException | ParseException | IOException e) {
-    //        e.printStackTrace();
-    //      }
-    //    }
   }
 
+  /**
+   * Writes the playlist items to JSON and returns a Paging of the tracks in the playlist.
+   *
+   * @param playlistId Spotify internal ID of playlist
+   * @return Paging set of songs in the playlist
+   */
   private Paging<PlaylistTrack> getPlaylistsItems(String playlistId) {
     GetPlaylistsItemsRequest playlistsItemsRequest =
         spotifyApi.getPlaylistsItems(playlistId).build();
     Paging<PlaylistTrack> playlistTrackPaging = null;
     try {
       playlistTrackPaging = playlistsItemsRequest.execute();
-      FileWriter fileWriter = new FileWriter("src/main/resources/top_50.json");
+      FileWriter fileWriter = new FileWriter(playlistFilePath);
       fileWriter.write(playlistsItemsRequest.getJson());
       fileWriter.flush();
       fileWriter.close();
