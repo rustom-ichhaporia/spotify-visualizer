@@ -37,6 +37,6 @@ public class DeserializationTests {
 
   @Test (expected = NullPointerException.class)
   public void testEmptyFile() {
-    apiDriver.deserializeJson("src/main/resources/emptyFileTest.json");
+    apiDriver.deserializeJson("src/main/resources/testEmptyFile.json");
   }
 }

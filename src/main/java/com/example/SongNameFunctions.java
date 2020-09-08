@@ -21,7 +21,7 @@ public class SongNameFunctions {
     Map<String, String> songIds = new HashMap<String, String>();
     for (PlaylistTrack playlistTrack : playlistTrackPaging.getItems()) {
       Track track = (Track) playlistTrack.getTrack();
-      songIds.put(track.getId(), track.getName());
+      songIds.put(track.getId(), track.getName());  // ID key, name value
     }
     return songIds;
   }

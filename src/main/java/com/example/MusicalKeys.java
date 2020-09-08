@@ -49,4 +49,38 @@ public class MusicalKeys {
     }
     return -1;
   }
+
+  /**
+   * @param keyInt Int representation of the key, from 0-11 (0=C).
+   *
+   * @return String that the keyInt represents
+   */
+  public static String getkeyString(int keyInt) {
+    switch (keyInt) {
+      case 0:
+        return "C";
+      case 1:
+        return "Dflat";
+      case 2:
+        return "D";
+      case 3:
+        return "Eflat";
+      case 4: return "E";
+      case 5:
+        return "F";
+      case 6:
+        return "Gflat";
+      case 7:
+        return "G";
+      case 8:
+        return "Aflat";
+      case 9:
+        return "A";
+      case 10:
+        return "Bflat";
+      case 11:
+        return "B";
+    }
+    return "Unknown key";
+  }
 }

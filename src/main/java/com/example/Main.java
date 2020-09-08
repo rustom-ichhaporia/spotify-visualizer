@@ -36,28 +36,37 @@ public class Main {
     apiDriver.setup(); // Connects to API using private credentials
     apiDriver.setPlaylistFilePath("src/main/resources/top50Playlist.json");
     apiDriver.setAudioFeaturePath("src/main/resources/top50AudioFeatures.json");
-    apiDriver.downloadPlaylist("37i9dQZEVXbLRQDuF5jeBp"); // Downloads JSON for Top 50 songs in US on Spotify
+    // Downloads JSONs for Top 50 songs in US on Spotify and their song features
+    apiDriver.downloadPlaylist("37i9dQZEVXbLRQDuF5jeBp");
     apiDriver.deserializeJson("src/main/resources/top50AudioFeatures.json");
     songFeatures = apiDriver.getSongFeatures(); // Fills AudioFeature list with deserialized objects
   }
 
   /** Runs a sample call for each filtering function in FilteringFunctions. */
   public static void runFilteringFunctions() {
-    filter.setAudioFeatures(songFeatures);
-    System.out.println(
-        "Songs with tempo above 160: " + SongNameFunctions.getSongNames(filter.getSongsWithTempo(160, true)));
-    System.out.println(
-        "Songs with danceability above 0.85: "
-            + SongNameFunctions.getSongNames(filter.getSongsWithDanceability(0.85, true)));
-    System.out.println(
-        "Songs with speechiness below 0.05: "
-            + SongNameFunctions.getSongNames(filter.getSongsWithSpeechiness(0.05, false)));
-    System.out.println(
-        "Get songs in key Csharp: " + SongNameFunctions.getSongNames(filter.getSongsWithKey("Csharp")));
+    System.out.println("Songs with tempo above 160: "
+            + SongNameFunctions.getSongNames(filter.getSongsWithTempo(songFeatures, 160, true)));
+    System.out.println("Songs with danceability above 0.85: "
+            + SongNameFunctions.getSongNames(
+                filter.getSongsWithDanceability(songFeatures, .85, true)));
+    System.out.println("Songs with speechiness below 0.05: "
+            + SongNameFunctions.getSongNames(
+                filter.getSongsWithSpeechiness(songFeatures, .05, false)));
+    System.out.println("Get songs in key Csharp: "
+            + SongNameFunctions.getSongNames(filter.getSongsWithKey(songFeatures, "Csharp")));
   }
 
-  /** Runs a sample call for each analysis function in AnalysisFunctions. */
-  public static void runAnalysisFunctions() {}
+  /** Runs a sample call for some analysis functions in AnalysisFunctions. */
+  public static void runAnalysisFunctions() {
+    System.out.println("Mode of song keys: "
+            + AnalysisFunctions.getModeKey(songFeatures));
+    System.out.println("Median of song durations: "
+            + AnalysisFunctions.getMedianDuration(songFeatures));
+    System.out.println("Median of song acousticness scores: "
+            + AnalysisFunctions.getMedianAcousticness(songFeatures));
+    System.out.println("Median of song instrumentalness scores: "
+            + AnalysisFunctions.getMedianInstrumentalness(songFeatures));
+  }
 
   /** Generates sample plots for the data gathered from the playlist. */
   public static void runPlotter() {}
