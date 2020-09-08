@@ -1,19 +1,19 @@
 package com.example;
 
-
 import java.util.List;
 
+/**
+ * Wrapper class for the AudioFeature objects deserialized from JSON. Needed to allow Jackson to
+ * understand the JSON file.
+ */
 public class AudioFeatureWrapper {
-    private List<AudioFeature> audio_features;
+  private List<AudioFeature> audio_features; // List of AudioFeatures in the JSON
 
-    public List<AudioFeature> getAudio_features() {
-        return audio_features;
-    }
-
-    //    public AudioFeature getAudioFeature (int index) {
-//        return audio_features.get(index);
-//    }
-//    public List<AudioFeature> getAllAudioFeatures() {
-//        return audio_features;
-//    }
+  /**
+   * Gets AudioFeatures list contained in the wrapper class.
+   * @return List of AudioFeatures
+   */
+  public List<AudioFeature> getAudio_features() {
+    return audio_features;
+  }
 }
