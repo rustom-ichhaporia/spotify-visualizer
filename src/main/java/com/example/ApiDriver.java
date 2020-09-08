@@ -29,10 +29,8 @@ public class ApiDriver {
   // API. NOTE: This is NOT uploaded to Github for security reasons, so please
   private List<AudioFeature> songFeatures; // List of AudioFeatures objects to be generated
   private Map<String, String> songIdsAndNames; // Map associating song IDs to song names
-  private String playlistFilePath =
-      "src/main/resources/top_50.json"; // File path to save playlist, can be edited
-  private String audioFeaturePath =
-      "src/main/resources/top_50_audio_features.json"; // File path to save AudioFeatures
+  private String playlistFilePath = ""; // File path to save playlist, can be edited
+  private String audioFeaturePath = ""; // File path to save AudioFeatures
 
   /** Sets up the API for use using credential login. */
   public void setup() {
@@ -175,5 +173,41 @@ public class ApiDriver {
       e.printStackTrace();
     }
     return playlistTrackPaging;
+  }
+
+  /**
+   * Gets the file path where the playlist is saved.
+   *
+   * @return Playlist file path
+   */
+  public String getPlaylistFilePath() {
+    return playlistFilePath;
+  }
+
+  /**
+   * Sets the file path for the playlist JSON to be saved.
+   *
+   * @param playlistFilePath File path to be set
+   */
+  public void setPlaylistFilePath(String playlistFilePath) {
+    this.playlistFilePath = playlistFilePath;
+  }
+
+  /**
+   * Gets the file path where the AudioFeatures are saved.
+   *
+   * @return AudioFeatures file path
+   */
+  public String getAudioFeaturePath() {
+    return audioFeaturePath;
+  }
+
+  /**
+   * Sets the file where the AudioFeatures JSON is to be saved.
+   *
+   * @param audioFeaturePath File path to be set
+   */
+  public void setAudioFeaturePath(String audioFeaturePath) {
+    this.audioFeaturePath = audioFeaturePath;
   }
 }

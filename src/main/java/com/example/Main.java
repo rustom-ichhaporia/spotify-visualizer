@@ -34,8 +34,10 @@ public class Main {
   /** Sets up the API to get data, create JSON files, and deserialize them. */
   public static void runApiDriver() {
     apiDriver.setup(); // Connects to API using private credentials
+    apiDriver.setPlaylistFilePath("src/main/resources/top50Playlist.json");
+    apiDriver.setAudioFeaturePath("src/main/resources/top50AudioFeatures.json");
     apiDriver.downloadPlaylist("37i9dQZEVXbLRQDuF5jeBp"); // Downloads JSON for Top 50 songs in US on Spotify
-    apiDriver.deserializeJson("src/main/resources/top_50_audio_features.json");
+    apiDriver.deserializeJson("src/main/resources/top50AudioFeatures.json");
     songFeatures = apiDriver.getSongFeatures(); // Fills AudioFeature list with deserialized objects
   }
 
