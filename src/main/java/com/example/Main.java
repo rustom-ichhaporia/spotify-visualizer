@@ -15,6 +15,8 @@ public class Main {
   private static FilteringFunctions filter = new FilteringFunctions();
   // analysis contains all the functions that analyze deserialized data.
   private static AnalysisFunctions analysis = new AnalysisFunctions();
+  // plotter implements JFreeChart to generates graphs of the songs' audio features
+  private static Plotter plotter = new Plotter();
   // songFeatures is a list of AudioFeature objects representing deserialized data.
   private static List<AudioFeature> songFeatures;
 
@@ -44,6 +46,7 @@ public class Main {
 
   /** Runs a sample call for each filtering function in FilteringFunctions. */
   public static void runFilteringFunctions() {
+    System.out.println("FILTERING-----------------------------");
     System.out.println("Songs with tempo above 180: \n"
             + SongNameFunctions.getSongNames(filter.getSongsWithTempo(songFeatures, 180, true)));
     System.out.println("Songs with danceability above 0.92: \n"
@@ -58,6 +61,7 @@ public class Main {
 
   /** Runs a sample call for some analysis functions in AnalysisFunctions. */
   public static void runAnalysisFunctions() {
+    System.out.println("ANALYSIS-----------------------------");
     System.out.println("Mode of song keys: "
             + AnalysisFunctions.getModeKey(songFeatures));
     System.out.println("Median of song durations: "
@@ -70,6 +74,9 @@ public class Main {
 
   /** Generates sample plots for the data gathered from the playlist. */
   public static void runPlotter() {
-
+    // Plots can be found in src/plots/
+    plotter.generateHistogramFromDoubles(songFeatures, AudioFeature::getTempo, "Tempo");
+    plotter.generateHistogramFromIntegers(songFeatures, AudioFeature::getDuration_ms, "Duration");
+    plotter.generateHistogramFromDoubles(songFeatures, AudioFeature::getDanceability, "Danceability");
   }
 }
