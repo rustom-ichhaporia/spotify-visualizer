@@ -44,15 +44,15 @@ public class Main {
 
   /** Runs a sample call for each filtering function in FilteringFunctions. */
   public static void runFilteringFunctions() {
-    System.out.println("Songs with tempo above 160: "
-            + SongNameFunctions.getSongNames(filter.getSongsWithTempo(songFeatures, 160, true)));
-    System.out.println("Songs with danceability above 0.85: "
+    System.out.println("Songs with tempo above 180: \n"
+            + SongNameFunctions.getSongNames(filter.getSongsWithTempo(songFeatures, 180, true)));
+    System.out.println("Songs with danceability above 0.92: \n"
             + SongNameFunctions.getSongNames(
-                filter.getSongsWithDanceability(songFeatures, .85, true)));
-    System.out.println("Songs with speechiness below 0.05: "
+                filter.getSongsWithDanceability(songFeatures, 0.92, true)));
+    System.out.println("Songs with speechiness below 0.04: \n"
             + SongNameFunctions.getSongNames(
-                filter.getSongsWithSpeechiness(songFeatures, .05, false)));
-    System.out.println("Get songs in key Csharp: "
+                filter.getSongsWithSpeechiness(songFeatures, .04, false)));
+    System.out.println("Get songs in key Csharp: \n"
             + SongNameFunctions.getSongNames(filter.getSongsWithKey(songFeatures, "Csharp")));
   }
 
@@ -69,5 +69,7 @@ public class Main {
   }
 
   /** Generates sample plots for the data gathered from the playlist. */
-  public static void runPlotter() {}
+  public static void runPlotter() {
+
+  }
 }

@@ -1,6 +1,6 @@
 {
   "audio_features" : [ {
-    "danceability" : 0.596,
+    "danceability" : "This is the error",
     "energy" : 0.854,
     "key" : 7,
     "loudness" : -5.114,

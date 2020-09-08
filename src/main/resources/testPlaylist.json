@@ -201,10 +201,184 @@
     "video_thumbnail" : {
       "url" : null
     }
+  }, {
+    "added_at" : "2020-09-08T20:18:23Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/shidoarichimorin"
+      },
+      "href" : "https://api.spotify.com/v1/users/shidoarichimorin",
+      "id" : "shidoarichimorin",
+      "type" : "user",
+      "uri" : "spotify:user:shidoarichimorin"
+    },
+    "is_local" : false,
+    "primary_color" : null,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/5Rl15oVamLq7FbSb0NNBNy"
+          },
+          "href" : "https://api.spotify.com/v1/artists/5Rl15oVamLq7FbSb0NNBNy",
+          "id" : "5Rl15oVamLq7FbSb0NNBNy",
+          "name" : "5 Seconds of Summer",
+          "type" : "artist",
+          "uri" : "spotify:artist:5Rl15oVamLq7FbSb0NNBNy"
+        } ],
+        "available_markets" : [ "CA", "MX", "US" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/2LkWHNNHgD6BRNeZI2SL1L"
+        },
+        "href" : "https://api.spotify.com/v1/albums/2LkWHNNHgD6BRNeZI2SL1L",
+        "id" : "2LkWHNNHgD6BRNeZI2SL1L",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/ab67616d0000b27393432e914046a003229378da",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/ab67616d00001e0293432e914046a003229378da",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/ab67616d0000485193432e914046a003229378da",
+          "width" : 64
+        } ],
+        "name" : "5 Seconds Of Summer",
+        "release_date" : "2014-06-27",
+        "release_date_precision" : "day",
+        "total_tracks" : 16,
+        "type" : "album",
+        "uri" : "spotify:album:2LkWHNNHgD6BRNeZI2SL1L"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/5Rl15oVamLq7FbSb0NNBNy"
+        },
+        "href" : "https://api.spotify.com/v1/artists/5Rl15oVamLq7FbSb0NNBNy",
+        "id" : "5Rl15oVamLq7FbSb0NNBNy",
+        "name" : "5 Seconds of Summer",
+        "type" : "artist",
+        "uri" : "spotify:artist:5Rl15oVamLq7FbSb0NNBNy"
+      } ],
+      "available_markets" : [ "CA", "MX", "US" ],
+      "disc_number" : 1,
+      "duration_ms" : 202496,
+      "episode" : false,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "GBUM71400377"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/1gugDOSMREb34Xo0c1PlxM"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/1gugDOSMREb34Xo0c1PlxM",
+      "id" : "1gugDOSMREb34Xo0c1PlxM",
+      "is_local" : false,
+      "name" : "She Looks So Perfect",
+      "popularity" : 71,
+      "preview_url" : null,
+      "track" : true,
+      "track_number" : 1,
+      "type" : "track",
+      "uri" : "spotify:track:1gugDOSMREb34Xo0c1PlxM"
+    },
+    "video_thumbnail" : {
+      "url" : null
+    }
+  }, {
+    "added_at" : "2020-09-08T20:32:46Z",
+    "added_by" : {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/shidoarichimorin"
+      },
+      "href" : "https://api.spotify.com/v1/users/shidoarichimorin",
+      "id" : "shidoarichimorin",
+      "type" : "user",
+      "uri" : "spotify:user:shidoarichimorin"
+    },
+    "is_local" : false,
+    "primary_color" : null,
+    "track" : {
+      "album" : {
+        "album_type" : "album",
+        "artists" : [ {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/246dkjvS1zLTtiykXe5h60"
+          },
+          "href" : "https://api.spotify.com/v1/artists/246dkjvS1zLTtiykXe5h60",
+          "id" : "246dkjvS1zLTtiykXe5h60",
+          "name" : "Post Malone",
+          "type" : "artist",
+          "uri" : "spotify:artist:246dkjvS1zLTtiykXe5h60"
+        } ],
+        "available_markets" : [ "AD", "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JO", "JP", "KW", "KZ", "LB", "LI", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MK", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TN", "TR", "TW", "UA", "US", "UY", "VN", "XK", "ZA" ],
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/album/4g1ZRSobMefqF6nelkgibi"
+        },
+        "href" : "https://api.spotify.com/v1/albums/4g1ZRSobMefqF6nelkgibi",
+        "id" : "4g1ZRSobMefqF6nelkgibi",
+        "images" : [ {
+          "height" : 640,
+          "url" : "https://i.scdn.co/image/ab67616d0000b2739478c87599550dd73bfa7e02",
+          "width" : 640
+        }, {
+          "height" : 300,
+          "url" : "https://i.scdn.co/image/ab67616d00001e029478c87599550dd73bfa7e02",
+          "width" : 300
+        }, {
+          "height" : 64,
+          "url" : "https://i.scdn.co/image/ab67616d000048519478c87599550dd73bfa7e02",
+          "width" : 64
+        } ],
+        "name" : "Hollywood's Bleeding",
+        "release_date" : "2019-09-06",
+        "release_date_precision" : "day",
+        "total_tracks" : 17,
+        "type" : "album",
+        "uri" : "spotify:album:4g1ZRSobMefqF6nelkgibi"
+      },
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/246dkjvS1zLTtiykXe5h60"
+        },
+        "href" : "https://api.spotify.com/v1/artists/246dkjvS1zLTtiykXe5h60",
+        "id" : "246dkjvS1zLTtiykXe5h60",
+        "name" : "Post Malone",
+        "type" : "artist",
+        "uri" : "spotify:artist:246dkjvS1zLTtiykXe5h60"
+      } ],
+      "available_markets" : [ "AD", "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "CA", "CH", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JO", "JP", "KW", "KZ", "LB", "LI", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MK", "MT", "MX", "MY", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TN", "TR", "TW", "UA", "US", "UY", "VN", "XK", "ZA" ],
+      "disc_number" : 1,
+      "duration_ms" : 215280,
+      "episode" : false,
+      "explicit" : false,
+      "external_ids" : {
+        "isrc" : "USUM71915699"
+      },
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/track/21jGcNKet2qwijlDFuPiPb"
+      },
+      "href" : "https://api.spotify.com/v1/tracks/21jGcNKet2qwijlDFuPiPb",
+      "id" : "21jGcNKet2qwijlDFuPiPb",
+      "is_local" : false,
+      "name" : "Circles",
+      "popularity" : 91,
+      "preview_url" : null,
+      "track" : true,
+      "track_number" : 6,
+      "type" : "track",
+      "uri" : "spotify:track:21jGcNKet2qwijlDFuPiPb"
+    },
+    "video_thumbnail" : {
+      "url" : null
+    }
   } ],
   "limit" : 100,
   "next" : null,
   "offset" : 0,
   "previous" : null,
-  "total" : 2
+  "total" : 4
 }

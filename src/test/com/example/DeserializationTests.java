@@ -25,18 +25,38 @@ public class DeserializationTests {
     songFeatures = apiDriver.getSongFeatures(); // Fills AudioFeature list with deserialized objects
   }
 
-  @Test (expected = FileNotFoundException.class)
-  public void testInvalidFile() {
+  @Test (expected = NullPointerException.class)
+  public void testInvalidFilePath() {
     apiDriver.deserializeJson("");
   }
+
+  @Test (expected = NullPointerException.class)
+  public void testEmptyFile() {
+    apiDriver.deserializeJson("src/main/resources/testEmptyFile.json");
+  }
+
+  @Test (expected = NullPointerException.class)
+  public void testInvalidJSON() {
+    // Tests the deserialization of a improperly formatted JSON where one entry is a String
+    // instead of an int to invalidate Jackson.
+    apiDriver.deserializeJson("src/main/resources/testAudioFeaturesInvalid.json");
+  }
+
+  @Test
+  public void testEmptyJson() {
+    apiDriver.deserializeJson("src/main/resources/emptyAudioFeatures.json");
+    assertEquals(0, apiDriver.getSongFeatures().size());
+  }
+
+  // The following tests assume properly JSON format and deserialization, as passed by the previous tests.
 
   @Test
   public void testJsonItemName() {
     assertEquals("Youngblood", songFeatures.get(0).getSongName());
   }
 
-  @Test (expected = NullPointerException.class)
-  public void testEmptyFile() {
-    apiDriver.deserializeJson("src/main/resources/testEmptyFile.json");
+  @Test
+  public void testJsonListLength() {
+    assertEquals(4, songFeatures.size());
   }
 }
